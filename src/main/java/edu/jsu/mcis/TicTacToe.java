@@ -11,7 +11,6 @@ public class TicTacToe {
         int width = DEFAULT_WIDTH;
         
         /* If a different size is provided as a command-line argument, use it instead */
-
         if(args.length >= 1) {
             
             try {
