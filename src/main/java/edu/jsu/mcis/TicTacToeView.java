@@ -21,8 +21,8 @@ public class TicTacToeView {
                 System.out.print("  ");
                 for (int k = 0; k < model.getWidth(); k++)
                     System.out.print(k);
-                     System.out.println();
-                     System.out.println();
+                     System.out.println("\n");
+                     //System.out.println();
                      
 				for (int i = 0; i <model.getWidth() ; i++) 
                
@@ -33,7 +33,7 @@ public class TicTacToeView {
 					if((model.getMark(i, j) == TicTacToeModel.Mark.EMPTY))
 						System.out.print("-");
 					else
-					   System.out.print(model.getMark(i,j).toString());
+					   System.out.print(model.getMark(i,j)/*.toString()*/);
                    }
                    System.out.println(); 
 				}
@@ -50,7 +50,7 @@ public class TicTacToeView {
             System.out.println("Player 1 (X) Move:");
         else
             System.out.println("Player 2 (O) Move:");
-        System.out.println("Enter the row and column numbers, seperated by a space:");
+        System.out.print("Enter the row and column numbers, seperated by a space: ");
 
     }
 
