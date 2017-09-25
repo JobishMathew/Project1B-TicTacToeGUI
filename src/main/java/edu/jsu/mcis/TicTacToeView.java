@@ -32,6 +32,15 @@ public class TicTacToeView extends JPanel implements ActionListener {
            "squaresPanel" JPanel created earlier. */
         
         /* INSERT CODE HERE */
+		   for (int i = 0; i < width; i++) {
+            for (int j = 0; j < width; j++) {
+                squares[i][j] = new JButton();
+                squares[i][j].setName("Square"+i+j);
+                squares[i][j].addActionListener(this);
+                squares[i][j].setPreferredSize(new Dimension(64, 64));
+                squaresPanel.add(squares[i][j]);
+            }
+        }
         
         add(squaresPanel);
         add(resultLabel);
@@ -51,10 +60,13 @@ public class TicTacToeView extends JPanel implements ActionListener {
            convert both to Integers!) */
 
         /* INSERT CODE HERE */
+		int row = Character.getNumericValue(name.charAt(6));
+        int col = Character.getNumericValue(name.charAt(7));
            
         /* Call makeMark() to place the mark in the Model */
         
         /* INSERT CODE HERE */
+		model.makeMark(row, col);
 
         /* Update the squares of the View using the "updateSquares()" method
            (see below); this is the equivalent of re-printing the grid to the
@@ -72,6 +84,16 @@ public class TicTacToeView extends JPanel implements ActionListener {
            JButton class provides a "setEnabled()" method for this.) */
            
         /* INSERT CODE HERE */
+		if(model.isGameover()){
+			showResult(model.getResult().toString());
+			for(int i=0; i < model.getWidth(); i++){
+				for(int j=0; j < model.getWidth(); j++){
+					squares[i][j].setEnabled(false);
+				}
+			}
+			
+		}
+				
         
     }
         
@@ -82,6 +104,12 @@ public class TicTacToeView extends JPanel implements ActionListener {
            by "getMark()" (to update the View to match the Model) */
            
         /* INSERT CODE HERE */
+		for( int i = 0; i < model.getWidth(); i++){
+			for(int j = 0; j < model.getWidth(); j++){
+				squares[i][j].setText(model.getMark(i , j).toString());
+			}
+		}
+			
 
     }
         
