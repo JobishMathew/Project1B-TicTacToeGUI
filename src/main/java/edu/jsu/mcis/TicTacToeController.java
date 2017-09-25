@@ -1,6 +1,8 @@
 package edu.jsu.mcis;
 
 import java.util.Scanner;
+import java.awt.*;
+import javax.swing.*;
 
 public class TicTacToeController {
 

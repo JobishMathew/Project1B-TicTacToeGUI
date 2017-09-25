@@ -1,17 +1,25 @@
 *** Settings ***
-Library    keywords.TicTacToeKeywords
-
+Library          SwingLibrary
 
 *** Keywords ***
-Check Location   [Arguments]   ${row}    ${col}    ${mark}
-    ${m}=   Get Mark    ${row}    ${col}
-	Should Be Equal    ${m}    ${mark}    
+Start New Game
+    Start Application   edu.jsu.mcis.TicTacToe
+    Select Window       Tic-Tac-Toe
 
-Winner Should Be   [Arguments]       ${mark}
-    ${m}=   Get Winner
-	Should Be Equal    ${m}    ${mark}    
-	
+Mark Location   [Arguments]     ${row}      ${col}
+    ${component}=   Catenate    SEPARATOR=  Square    ${row}  ${col}
+    Click On Component  ${component}
 
+Check Location  [Arguments]     ${row}  ${col}  ${mark}
+    ${component}=   Catenate    SEPARATOR=  Square    ${row}  ${col}
+	${text}=    Get Button Text   ${component}
+    Should Be Equal    ${text}    ${mark}
+    
+Winner Should Be    [Arguments]     ${winner}
+	${text}=    Get Label Content    ResultLabel
+    Should Be Equal    ${text}    ${winner}
+    Close Window    Tic-Tac-Toe
+    
 *** Test Cases ***
 Win Diagonally as X
     Start New Game
@@ -65,3 +73,5 @@ Force a Tie
     Check Location      2   2   X
     Winner Should Be    TIE
 
+    
+    
